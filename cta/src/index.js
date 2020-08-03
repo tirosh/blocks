@@ -74,6 +74,9 @@ registerBlockType("create-block/cta", {
 			source: "html",
 			selector: "h2",
 		},
+		titleColor: {
+			default: "black",
+		},
 		body: {
 			source: "html",
 			selector: "p",

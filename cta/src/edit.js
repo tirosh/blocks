@@ -1,4 +1,20 @@
-import { RichText } from "@wordpress/block-editor";
+/**
+ * WordPress dependencies
+ */
+import { RichText, InspectorControls } from "@wordpress/block-editor";
+import {
+	ColorPalette,
+	Panel,
+	PanelBody,
+	PanelRow,
+	// CheckboxControl,
+	// RadioControl,
+	// TextControl,
+	// ToggleControl,
+	// SelectControl,
+} from "@wordpress/components";
+import { withState } from "@wordpress/compose";
+// import { more } from "@wordpress/icons";
 
 /**
  * Retrieves the translation of text.
@@ -27,22 +43,43 @@ import "./editor.scss";
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	return (
-		<>
+	const { title, titleColor, body } = attributes;
+
+	const colors = [
+		{ name: "red", color: "#f00" },
+		{ name: "white", color: "#fff" },
+		{ name: "blue", color: "#00f" },
+	];
+
+	return [
+		<InspectorControls style={{ marginBottom: "40px" }}>
+			<PanelBody title={"Font Color Settings"}>
+				<p>
+					<strong>Select a Title color:</strong>
+				</p>
+				<ColorPalette
+					colors={colors}
+					value={titleColor}
+					onChange={(titleColor) => setAttributes({ titleColor })}
+				/>
+			</PanelBody>
+		</InspectorControls>,
+		<div className="cta-container">
 			<RichText
 				key="editable"
 				tagName="h2"
 				placeholder="Your CTA Title"
-				value={attributes.title}
+				value={title}
 				onChange={(title) => setAttributes({ title })}
+				style={{ color: titleColor }}
 			/>
 			<RichText
 				key="editable"
 				tagName="p"
 				placeholder="Your CTA Description"
-				value={attributes.body}
+				value={body}
 				onChange={(body) => setAttributes({ body })}
 			/>
-		</>
-	);
+		</div>,
+	];
 }

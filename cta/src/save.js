@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { RichText } from "@wordpress/block-editor";
 
 /**
@@ -20,9 +23,9 @@ export default function save({ attributes }) {
 	const { title, body } = attributes;
 
 	return (
-		<>
+		<div className="cta-container">
 			<h2>{title}</h2>
 			<RichText.Content tagName="p" value={body} />
-		</>
+		</div>
 	);
 }
