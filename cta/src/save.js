@@ -1,3 +1,5 @@
+import { RichText } from "@wordpress/block-editor";
+
 /**
  * Retrieves the translation of text.
  *
@@ -14,6 +16,13 @@ import { __ } from "@wordpress/i18n";
  *
  * @return {WPElement} Element to render.
  */
-export default function save({ attributes, className }) {
-	return <div className={className}>{attributes.author}</div>;
+export default function save({ attributes }) {
+	const { title, body } = attributes;
+
+	return (
+		<>
+			<h2>{title}</h2>
+			<RichText.Content tagName="p" value={body} />
+		</>
+	);
 }

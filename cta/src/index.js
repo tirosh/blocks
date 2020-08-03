@@ -70,13 +70,14 @@ registerBlockType("create-block/cta", {
 
 	// Specifying my block attributes
 	attributes: {
-		author: {
-			type: "string",
+		title: {
+			source: "html",
+			selector: "h2",
 		},
-	},
-
-	updateAuthor: () => (event) => {
-		console.log("event", event);
+		body: {
+			source: "html",
+			selector: "p",
+		},
 	},
 
 	/**

@@ -1,4 +1,4 @@
-import { TextControl } from "@wordpress/components";
+import { RichText } from "@wordpress/block-editor";
 
 /**
  * Retrieves the translation of text.
@@ -26,18 +26,23 @@ import "./editor.scss";
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit({ attributes, setAttributes, className }) {
-	function updateAuthor(val) {
-		setAttributes({ author: val });
-	}
-
+export default function Edit({ attributes, setAttributes }) {
 	return (
-		<div className={className}>
-			<TextControl
-				label={__("Author", "cta")}
-				value={attributes.author}
-				onChange={(val) => updateAuthor(val)}
+		<>
+			<RichText
+				key="editable"
+				tagName="h2"
+				placeholder="Your CTA Title"
+				value={attributes.title}
+				onChange={(title) => setAttributes({ title })}
 			/>
-		</div>
+			<RichText
+				key="editable"
+				tagName="p"
+				placeholder="Your CTA Description"
+				value={attributes.body}
+				onChange={(body) => setAttributes({ body })}
+			/>
+		</>
 	);
 }
