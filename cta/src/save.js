@@ -20,12 +20,36 @@ import { __ } from "@wordpress/i18n";
  * @return {WPElement} Element to render.
  */
 export default function save({ attributes }) {
-	const { title, body } = attributes;
+	const {
+		title,
+		titleColor,
+		body,
+		bodyColor,
+		backgroundImage,
+		overlayColor,
+		overlayOpacity,
+	} = attributes;
 
 	return (
-		<div className="cta-container">
-			<h2>{title}</h2>
-			<RichText.Content tagName="p" value={body} />
+		<div
+			className="cta-container"
+			style={{
+				backgroundImage: `url(${backgroundImage})`,
+				backgroundSize: "cover",
+				backgroundPosition: "center",
+				backgroundRepeat: "no-repeat",
+			}}
+		>
+			<div
+				className="cta-overlay"
+				style={{ background: overlayColor, opacity: overlayOpacity }}
+			></div>
+			<h2 style={{ color: titleColor, position: "relative" }}>{title}</h2>
+			<RichText.Content
+				style={{ color: bodyColor, position: "relative" }}
+				tagName="p"
+				value={body}
+			/>
 		</div>
 	);
 }

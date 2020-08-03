@@ -1,12 +1,19 @@
 /**
  * WordPress dependencies
  */
-import { RichText, InspectorControls } from "@wordpress/block-editor";
 import {
+	RichText,
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+} from "@wordpress/block-editor";
+import {
+	Button,
 	ColorPalette,
-	Panel,
+	// Panel,
 	PanelBody,
-	PanelRow,
+	// PanelRow,
+	RangeControl,
 	// CheckboxControl,
 	// RadioControl,
 	// TextControl,
@@ -43,13 +50,24 @@ import "./editor.scss";
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { title, titleColor, body } = attributes;
+	const {
+		title,
+		titleColor,
+		body,
+		bodyColor,
+		backgroundImage,
+		overlayColor,
+		overlayOpacity,
+	} = attributes;
 
 	const colors = [
 		{ name: "red", color: "#f00" },
 		{ name: "white", color: "#fff" },
 		{ name: "blue", color: "#00f" },
 	];
+
+	const onSelectImage = (newImage) =>
+		setAttributes({ backgroundImage: newImage.sizes.full.url });
 
 	return [
 		<InspectorControls style={{ marginBottom: "40px" }}>
@@ -63,15 +81,78 @@ export default function Edit({ attributes, setAttributes }) {
 					onChange={(titleColor) => setAttributes({ titleColor })}
 				/>
 			</PanelBody>
+			<PanelBody title={"Body Color Settings"}>
+				<p>
+					<strong>Select a Body color:</strong>
+				</p>
+				<ColorPalette
+					colors={colors}
+					value={bodyColor}
+					onChange={(bodyColor) => setAttributes({ bodyColor })}
+				/>
+			</PanelBody>
+			<PanelBody title={"Background Image Settings"}>
+				<p>
+					<strong>Select a Background Image:</strong>
+				</p>
+				<MediaUpload
+					onSelect={onSelectImage}
+					allowedTypes={["image"]}
+					value={backgroundImage}
+					render={({ open }) => (
+						<Button
+							onClick={open}
+							icon="upload"
+							label="Background Image"
+							className="editor-media-placeholder__button is-button is-default is-large"
+						>
+							Background Image
+						</Button>
+					)}
+				/>
+				<div style={{ marginTop: "20px", marginBottom: "40px" }}>
+					<p>
+						<strong>Overlay Color</strong>
+					</p>
+					<ColorPalette
+						colors={[
+							{ name: "white", color: "#fff" },
+							{ name: "black", color: "#000" },
+						]}
+						value={overlayColor}
+						onChange={(overlayColor) => setAttributes({ overlayColor })}
+					/>
+				</div>
+				<RangeControl
+					label={"Overlay Opacity"}
+					value={overlayOpacity}
+					onChange={(overlayOpacity) => setAttributes({ overlayOpacity })}
+					min={0}
+					max={1}
+					step={0.01}
+				/>
+			</PanelBody>
 		</InspectorControls>,
-		<div className="cta-container">
+		<div
+			className="cta-container"
+			style={{
+				backgroundImage: `url(${backgroundImage})`,
+				backgroundSize: "cover",
+				backgroundPosition: "center",
+				backgroundRepeat: "no-repeat",
+			}}
+		>
+			<div
+				className="cta-overlay"
+				style={{ background: overlayColor, opacity: overlayOpacity }}
+			></div>
 			<RichText
 				key="editable"
 				tagName="h2"
 				placeholder="Your CTA Title"
 				value={title}
 				onChange={(title) => setAttributes({ title })}
-				style={{ color: titleColor }}
+				style={{ color: titleColor, position: "relative" }}
 			/>
 			<RichText
 				key="editable"
@@ -79,6 +160,7 @@ export default function Edit({ attributes, setAttributes }) {
 				placeholder="Your CTA Description"
 				value={body}
 				onChange={(body) => setAttributes({ body })}
+				style={{ color: bodyColor, position: "relative" }}
 			/>
 		</div>,
 	];

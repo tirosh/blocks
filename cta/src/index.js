@@ -71,15 +71,34 @@ registerBlockType("create-block/cta", {
 	// Specifying my block attributes
 	attributes: {
 		title: {
+			type: "string",
 			source: "html",
 			selector: "h2",
 		},
 		titleColor: {
+			type: "string",
 			default: "black",
 		},
 		body: {
+			type: "string",
 			source: "html",
 			selector: "p",
+		},
+		bodyColor: {
+			type: "string",
+			default: "black",
+		},
+		backgroundImage: {
+			type: "string",
+			default: null,
+		},
+		overlayColor: {
+			type: "string",
+			default: "#000",
+		},
+		overlayOpacity: {
+			type: "number",
+			default: 0.3,
 		},
 	},
 
