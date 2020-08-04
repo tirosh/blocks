@@ -5,7 +5,10 @@ import {
 	RichText,
 	InspectorControls,
 	MediaUpload,
-	MediaUploadCheck,
+	// MediaUploadCheck,
+	InnerBlocks,
+	BlockControls,
+	AlignmentToolbar,
 } from "@wordpress/block-editor";
 import {
 	Button,
@@ -22,6 +25,8 @@ import {
 } from "@wordpress/components";
 import { withState } from "@wordpress/compose";
 // import { more } from "@wordpress/icons";
+
+const ALLOWED_BLOCKS = ["core/button"];
 
 /**
  * Retrieves the translation of text.
@@ -54,6 +59,7 @@ export default function Edit({ attributes, setAttributes }) {
 		title,
 		titleColor,
 		body,
+		bodyAlignment,
 		bodyColor,
 		backgroundImage,
 		overlayColor,
@@ -146,13 +152,25 @@ export default function Edit({ attributes, setAttributes }) {
 				className="cta-overlay"
 				style={{ background: overlayColor, opacity: overlayOpacity }}
 			></div>
+			{
+				<BlockControls>
+					<AlignmentToolbar
+						value={bodyAlignment}
+						onChange={(bodyAlignment) => setAttributes({ bodyAlignment })}
+					/>
+				</BlockControls>
+			}
 			<RichText
 				key="editable"
 				tagName="h2"
 				placeholder="Your CTA Title"
 				value={title}
 				onChange={(title) => setAttributes({ title })}
-				style={{ color: titleColor, position: "relative" }}
+				style={{
+					textAlign: bodyAlignment,
+					color: titleColor,
+					position: "relative",
+				}}
 			/>
 			<RichText
 				key="editable"
@@ -160,8 +178,13 @@ export default function Edit({ attributes, setAttributes }) {
 				placeholder="Your CTA Description"
 				value={body}
 				onChange={(body) => setAttributes({ body })}
-				style={{ color: bodyColor, position: "relative" }}
+				style={{
+					textAlign: bodyAlignment,
+					color: bodyColor,
+					position: "relative",
+				}}
 			/>
+			<InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
 		</div>,
 	];
 }

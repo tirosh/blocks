@@ -84,6 +84,10 @@ registerBlockType("create-block/cta", {
 			source: "html",
 			selector: "p",
 		},
+		bodyAlignment: {
+			type: "string",
+			default: "none",
+		},
 		bodyColor: {
 			type: "string",
 			default: "black",

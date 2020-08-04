@@ -201,6 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 
  // import { more } from "@wordpress/icons";
 
+var ALLOWED_BLOCKS = ["core/button"];
 /**
  * Retrieves the translation of text.
  *
@@ -234,6 +235,7 @@ function Edit(_ref) {
   var title = attributes.title,
       titleColor = attributes.titleColor,
       body = attributes.body,
+      bodyAlignment = attributes.bodyAlignment,
       bodyColor = attributes.bodyColor,
       backgroundImage = attributes.backgroundImage,
       overlayColor = attributes.overlayColor,
@@ -338,7 +340,14 @@ function Edit(_ref) {
       background: overlayColor,
       opacity: overlayOpacity
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["RichText"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["BlockControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["AlignmentToolbar"], {
+    value: bodyAlignment,
+    onChange: function onChange(bodyAlignment) {
+      return setAttributes({
+        bodyAlignment: bodyAlignment
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["RichText"], {
     key: "editable",
     tagName: "h2",
     placeholder: "Your CTA Title",
@@ -349,6 +358,7 @@ function Edit(_ref) {
       });
     },
     style: {
+      textAlign: bodyAlignment,
       color: titleColor,
       position: "relative"
     }
@@ -363,9 +373,12 @@ function Edit(_ref) {
       });
     },
     style: {
+      textAlign: bodyAlignment,
       color: bodyColor,
       position: "relative"
     }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InnerBlocks"], {
+    allowedBlocks: ALLOWED_BLOCKS
   }))];
 }
 
@@ -481,6 +494,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("cre
       source: "html",
       selector: "p"
     },
+    bodyAlignment: {
+      type: "string",
+      default: "none"
+    },
     bodyColor: {
       type: "string",
       default: "black"
@@ -556,6 +573,7 @@ function save(_ref) {
   var title = attributes.title,
       titleColor = attributes.titleColor,
       body = attributes.body,
+      bodyAlignment = attributes.bodyAlignment,
       bodyColor = attributes.bodyColor,
       backgroundImage = attributes.backgroundImage,
       overlayColor = attributes.overlayColor,
@@ -576,17 +594,19 @@ function save(_ref) {
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
     style: {
+      textAlign: bodyAlignment,
       color: titleColor,
       position: "relative"
     }
   }, title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["RichText"].Content, {
     style: {
+      textAlign: bodyAlignment,
       color: bodyColor,
       position: "relative"
     },
     tagName: "p",
     value: body
-  }));
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InnerBlocks"].Content, null));
 }
 
 /***/ }),

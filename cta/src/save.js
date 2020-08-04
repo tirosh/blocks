@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { RichText } from "@wordpress/block-editor";
+import { RichText, InnerBlocks } from "@wordpress/block-editor";
 
 /**
  * Retrieves the translation of text.
@@ -24,6 +24,7 @@ export default function save({ attributes }) {
 		title,
 		titleColor,
 		body,
+		bodyAlignment,
 		bodyColor,
 		backgroundImage,
 		overlayColor,
@@ -44,12 +45,25 @@ export default function save({ attributes }) {
 				className="cta-overlay"
 				style={{ background: overlayColor, opacity: overlayOpacity }}
 			></div>
-			<h2 style={{ color: titleColor, position: "relative" }}>{title}</h2>
+			<h2
+				style={{
+					textAlign: bodyAlignment,
+					color: titleColor,
+					position: "relative",
+				}}
+			>
+				{title}
+			</h2>
 			<RichText.Content
-				style={{ color: bodyColor, position: "relative" }}
+				style={{
+					textAlign: bodyAlignment,
+					color: bodyColor,
+					position: "relative",
+				}}
 				tagName="p"
 				value={body}
 			/>
+			<InnerBlocks.Content />
 		</div>
 	);
 }
