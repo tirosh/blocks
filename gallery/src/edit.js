@@ -188,7 +188,7 @@ export default function Edit({ attributes, setAttributes }) {
 			</PanelBody>
 		</InspectorControls>,
 		<div
-			className="cta-container"
+			className="gallery-container"
 			style={{
 				backgroundImage: `url(${backgroundImage})`,
 				backgroundSize: "cover",
@@ -197,7 +197,7 @@ export default function Edit({ attributes, setAttributes }) {
 			}}
 		>
 			<div
-				className="cta-overlay"
+				className="gallery-overlay"
 				style={{ background: overlayColor, opacity: overlayOpacity }}
 			></div>
 			{
@@ -211,7 +211,7 @@ export default function Edit({ attributes, setAttributes }) {
 			<RichText
 				key="editable"
 				tagName="h2"
-				placeholder="Your CTA Title"
+				placeholder="Your Gallery Title"
 				value={title}
 				onChange={(title) => setAttributes({ title })}
 				style={{
@@ -223,7 +223,7 @@ export default function Edit({ attributes, setAttributes }) {
 			<RichText
 				key="editable"
 				tagName="p"
-				placeholder="Your CTA Description"
+				placeholder="Your Gallery Description"
 				value={body}
 				onChange={(body) => setAttributes({ body })}
 				style={{

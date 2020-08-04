@@ -398,7 +398,7 @@ function Edit(_ref) {
     max: 1,
     step: 0.01
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "cta-container",
+    className: "gallery-container",
     style: {
       backgroundImage: "url(".concat(backgroundImage, ")"),
       backgroundSize: "cover",
@@ -406,7 +406,7 @@ function Edit(_ref) {
       backgroundRepeat: "no-repeat"
     }
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "cta-overlay",
+    className: "gallery-overlay",
     style: {
       background: overlayColor,
       opacity: overlayOpacity
@@ -421,7 +421,7 @@ function Edit(_ref) {
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["RichText"], {
     key: "editable",
     tagName: "h2",
-    placeholder: "Your CTA Title",
+    placeholder: "Your Gallery Title",
     value: title,
     onChange: function onChange(title) {
       return setAttributes({
@@ -436,7 +436,7 @@ function Edit(_ref) {
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["RichText"], {
     key: "editable",
     tagName: "p",
-    placeholder: "Your CTA Description",
+    placeholder: "Your Gallery Description",
     value: body,
     onChange: function onChange(body) {
       return setAttributes({
@@ -517,18 +517,18 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("create-block/cta", {
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("till/gallery", {
   /**
    * This is the display title for your block, which can be translated with `i18n` functions.
    * The block inserter will show this name.
    */
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Cta", "create-block"),
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Till's Gallery", "till"),
 
   /**
    * This is a short description for your block, can be translated with `i18n` functions.
    * It will be shown in the Block Tab in the Settings Sidebar.
    */
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Example block written with ESNext standard and JSX support – build step required.", "create-block"),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Testing MediaUpload.", "till"),
 
   /**
    * Blocks are grouped into categories to help users browse and discover them.
@@ -540,7 +540,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("cre
    * An icon property should be specified to make it easier to identify a block.
    * These can be any of WordPress’ Dashicons, or a custom svg element.
    */
-  icon: "smiley",
+  icon: "format-gallery",
 
   /**
    * Optional block extended support features.
@@ -667,7 +667,7 @@ function save(_ref) {
       overlayColor = attributes.overlayColor,
       overlayOpacity = attributes.overlayOpacity;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "cta-container",
+    className: "gallery-container",
     style: {
       backgroundImage: "url(".concat(backgroundImage, ")"),
       backgroundSize: "cover",
@@ -675,7 +675,7 @@ function save(_ref) {
       backgroundRepeat: "no-repeat"
     }
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "cta-overlay",
+    className: "gallery-overlay",
     style: {
       background: overlayColor,
       opacity: overlayOpacity

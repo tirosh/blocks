@@ -4,21 +4,21 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-create-block-cta {
+.wp-block-till-gallery {
   background-color: var(--wp-admin-theme-color);
   color: #181717;
   padding: 2px;
   font-weight: bold;
   font-size: xx-large; }
 
-.cta-container {
+.gallery-container {
   position: relative;
   padding: 10px 20px; }
-  .cta-container * {
+  .gallery-container * {
     text-align: center;
     position: relative;
     z-index: 1; }
-  .cta-container .cta-overlay {
+  .gallery-container .gallery-overlay {
     position: absolute;
     top: 0;
     right: 0;

@@ -33,7 +33,7 @@ export default function save({ attributes }) {
 
 	return (
 		<div
-			className="cta-container"
+			className="gallery-container"
 			style={{
 				backgroundImage: `url(${backgroundImage})`,
 				backgroundSize: "cover",
@@ -42,7 +42,7 @@ export default function save({ attributes }) {
 			}}
 		>
 			<div
-				className="cta-overlay"
+				className="gallery-overlay"
 				style={{ background: overlayColor, opacity: overlayOpacity }}
 			></div>
 			<h2

@@ -1,10 +1,10 @@
 {
-	"name": "create-block/cta",
-	"title": "Cta",
+	"name": "till/gallery",
+	"title": "Till's Gallery",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
-	"textdomain": "create-block",
+	"icon": "format-gallery",
+	"description": "Test: MediaUpload.",
+	"textdomain": "till",
 	"supports": {
 		"html": false
 	},
