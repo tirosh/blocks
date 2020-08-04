@@ -15,7 +15,14 @@ import {
 	ColorPalette,
 	PanelBody,
 	RangeControl,
+	CheckboxControl,
+	RadioControl,
+	TextControl,
+	ToggleControl,
+	SelectControl,
 } from "@wordpress/components";
+import { withState } from "@wordpress/compose";
+// import { more } from "@wordpress/icons";
 
 const ALLOWED_BLOCKS = ["core/button"];
 
@@ -55,6 +62,11 @@ export default function Edit({ attributes, setAttributes }) {
 		backgroundImage,
 		overlayColor,
 		overlayOpacity,
+		checkboxField,
+		radioField,
+		textField,
+		toggleField,
+		selectField,
 	} = attributes;
 
 	const colors = [
@@ -68,6 +80,49 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return [
 		<InspectorControls style={{ marginBottom: "40px" }}>
+			<PanelBody title={"Inspector Control Attributes"} initialOpen={false}>
+				<CheckboxControl
+					heading="Checkbox Field"
+					label="Tick Me"
+					help="Additional help text"
+					checked={checkboxField}
+					onChange={(checkboxField) => setAttributes({ checkboxField })}
+				/>
+
+				<RadioControl
+					label="Radio Field"
+					selected={radioField}
+					options={[
+						{ label: "Yes", value: "yes" },
+						{ label: "No", value: "no" },
+					]}
+					onChange={(radioField) => setAttributes({ radioField })}
+				/>
+
+				<TextControl
+					label="Text Field"
+					help="Additional help text"
+					value={textField}
+					onChange={(textField) => setAttributes({ textField })}
+				/>
+
+				<ToggleControl
+					label="Toggle Field"
+					checked={toggleField}
+					onChange={(toggleField) => setAttributes({ toggleField })}
+				/>
+
+				<SelectControl
+					label="Select Control"
+					value={selectField}
+					options={[
+						{ value: "a", label: "Option A" },
+						{ value: "b", label: "Option B" },
+						{ value: "c", label: "Option C" },
+					]}
+					onChange={(selectField) => setAttributes({ selectField })}
+				/>
+			</PanelBody>
 			<PanelBody title={"Font Color Settings"} initialOpen={false}>
 				<p>
 					<strong>Select a Title color:</strong>

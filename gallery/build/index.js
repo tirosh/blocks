@@ -186,16 +186,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_editor_scss__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_editor_scss__WEBPACK_IMPORTED_MODULE_5__);
 
 
 /**
  * WordPress dependencies
  */
 
+
+ // import { more } from "@wordpress/icons";
 
 var ALLOWED_BLOCKS = ["core/button"];
 /**
@@ -235,7 +239,12 @@ function Edit(_ref) {
       bodyColor = attributes.bodyColor,
       backgroundImage = attributes.backgroundImage,
       overlayColor = attributes.overlayColor,
-      overlayOpacity = attributes.overlayOpacity;
+      overlayOpacity = attributes.overlayOpacity,
+      checkboxField = attributes.checkboxField,
+      radioField = attributes.radioField,
+      textField = attributes.textField,
+      toggleField = attributes.toggleField,
+      selectField = attributes.selectField;
   var colors = [{
     name: "red",
     color: "#f00"
@@ -258,6 +267,69 @@ function Edit(_ref) {
       marginBottom: "40px"
     }
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
+    title: "Inspector Control Attributes",
+    initialOpen: false
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["CheckboxControl"], {
+    heading: "Checkbox Field",
+    label: "Tick Me",
+    help: "Additional help text",
+    checked: checkboxField,
+    onChange: function onChange(checkboxField) {
+      return setAttributes({
+        checkboxField: checkboxField
+      });
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["RadioControl"], {
+    label: "Radio Field",
+    selected: radioField,
+    options: [{
+      label: "Yes",
+      value: "yes"
+    }, {
+      label: "No",
+      value: "no"
+    }],
+    onChange: function onChange(radioField) {
+      return setAttributes({
+        radioField: radioField
+      });
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["TextControl"], {
+    label: "Text Field",
+    help: "Additional help text",
+    value: textField,
+    onChange: function onChange(textField) {
+      return setAttributes({
+        textField: textField
+      });
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToggleControl"], {
+    label: "Toggle Field",
+    checked: toggleField,
+    onChange: function onChange(toggleField) {
+      return setAttributes({
+        toggleField: toggleField
+      });
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["SelectControl"], {
+    label: "Select Control",
+    value: selectField,
+    options: [{
+      value: "a",
+      label: "Option A"
+    }, {
+      value: "b",
+      label: "Option B"
+    }, {
+      value: "c",
+      label: "Option C"
+    }],
+    onChange: function onChange(selectField) {
+      return setAttributes({
+        selectField: selectField
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
     title: "Font Color Settings",
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, "Select a Title color:")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ColorPalette"], {
@@ -512,6 +584,23 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("cre
     overlayOpacity: {
       type: "number",
       default: 0.3
+    },
+    checkboxField: {
+      type: "boolean",
+      default: true
+    },
+    radioField: {
+      type: "string",
+      default: "yes"
+    },
+    textField: {
+      type: "string"
+    },
+    toggleField: {
+      type: "boolean"
+    },
+    selectField: {
+      type: "string"
     }
   },
 
@@ -640,6 +729,17 @@ function save(_ref) {
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/compose":
+/*!******************************************!*\
+  !*** external {"this":["wp","compose"]} ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["compose"]; }());
 
 /***/ }),
 
